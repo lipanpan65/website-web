@@ -36,8 +36,18 @@ const IconText = ({ type, text }) => (
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            posts: []
+        }
     }
+
+
+    componentWillMount() {
+
+        
+    }
+
+
     render() {
         return (
             <div>
@@ -68,8 +78,8 @@ class Home extends Component {
                         {/* <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
 
                         </div> */}
-                        <Row type="flex" justify="center"  style={{}}>
-                        {/* align="middle" */}
+                        <Row type="flex" justify="center" style={{}}>
+                            {/* align="middle" */}
                             <Col span={12}>
                                 <Card size="default" title={
                                     <Breadcrumb separator="|">
@@ -93,7 +103,7 @@ class Home extends Component {
                                         dataSource={data}
                                         renderItem={item => (
                                             <List.Item
-                                            key={item.title}
+                                                key={item.title}
                                                 actions={[
                                                     <IconText type="star-o" text="156" key="list-vertical-star-o" />,
                                                     <IconText type="like-o" text="156" key="list-vertical-like-o" />,
@@ -103,7 +113,7 @@ class Home extends Component {
                                                 <List.Item.Meta
                                                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                                                     title={<a href="https://ant.design">{item.title}</a>}
-                                                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                                                 />
                                             </List.Item>
                                         )}
@@ -116,8 +126,6 @@ class Home extends Component {
                                     marginRight: 16
                                 }}>
                                     <Card size="small" title="Small size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
-
-
                                     </Card>
                                     test
                                 </div> */}
@@ -125,10 +133,9 @@ class Home extends Component {
                             <Col span={4}>
                                 {/* <div style={{ background: 'red', padding: 24, }}></div> */}
                                 <Card
-                                size="default"
-                                style={{ minHeight: 200, marginRight: 16 }}
+                                    size="default"
+                                    style={{ minHeight: 200, marginRight: 16 }}
                                 >
-
                                 </Card>
 
                             </Col>
@@ -140,7 +147,6 @@ class Home extends Component {
         );
     }
 }
-
 export default Home;
 
 
