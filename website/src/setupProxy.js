@@ -4,7 +4,7 @@ module.exports = function (app) {
     app.use(
         "/api",
         createProxyMiddleware({
-            target: "http://www.lipy.site",
+            target: "39.105.168.100:6868",
             changeOrigin: true,
             // "pathRewrite":{
             //   "^/lg":"/"
