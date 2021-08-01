@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { Layout, Menu, Row, Col, Card, Breadcrumb, List, Icon } from 'antd';
+import { reqPosts } from '../../api'
 import "./style.css"
 
 // Breadcrumb
@@ -41,10 +42,18 @@ class Home extends Component {
         }
     }
 
+    getArticleList = async () => {
+        // 调用接口请求异步获取数据
+        const resp = await reqPosts();
+        console.log(resp)
+        // this.setState({ posts: resp });
+      };
+
 
     componentWillMount() {
 
-        
+        this.getArticleList()
+
     }
 
 
