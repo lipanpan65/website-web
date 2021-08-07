@@ -53,8 +53,10 @@ class Home extends Component {
     this.getArticleList()
   }
 
-  toEdit = () => {
-
+  toEditor = () => {
+    this.props.history.push({
+      pathname:"/editor/drafts/new"
+    })
   }
 
   render() {
@@ -78,7 +80,7 @@ class Home extends Component {
                 </Menu>
               </Col>
               <Col span={2}>
-                <Button type="primary">
+                <Button type="primary" onClick={this.toEditor}>
                   写文章
                 </Button>
               </Col>
