@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 // import Home from './pages/Home'
-import Editor from './pages/Editor';
+import Editor from './pages/Editor/indexv2';
 
 import './App.css';
 
