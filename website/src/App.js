@@ -6,6 +6,8 @@ import {Switch,Route,HashRouter}  from 'react-router-dom'
 import Home from './pages/Home'
 import Editor from './pages/Editor';
 
+
+
 import './App.css';
 
 class App extends Component {
