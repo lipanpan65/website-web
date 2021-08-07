@@ -1,6 +1,5 @@
 // 'use strict';
 import React from 'react'
-import { Row, Col, Menu, Dropdown, Icon, Popover, Avatar, Button } from "antd";
 // import ReactDOM from 'react-dom'
 import MdEditor from 'react-markdown-editor-lite'
 import MarkdownIt from 'markdown-it'
@@ -59,7 +58,6 @@ export default class Editor extends React.Component {
     const { text, html } = data
     this.setState({ text })
   }
-
   handleImageUpload(file, callback) {
     const reader = new FileReader()
     reader.onload = () => {
@@ -92,11 +90,6 @@ export default class Editor extends React.Component {
     })
   }
 
-  toDraft = () => {
-    // 去草稿箱页面
-    console.log("to traft")
-  }
-
   handleGetMdValue = () => {
     this.mdEditor && alert(this.mdEditor.getMdValue())
   }
@@ -111,81 +104,8 @@ export default class Editor extends React.Component {
           <button onClick={this.handleGetMdValue} >getMdValue</button>
           <button onClick={this.handleGetHtmlValue} >getHtmlValue</button>
         </nav> */}
-
-        <div>
-          <Row
-            style={{
-              height: '65px',
-              display: 'flex'
-            }}
-          >
-            <Col span={12} style={{ paddingRight: 14, cursor: "pointer", height: '100%' }}>
-              <input
-                placeholder="请输入文章标题..."
-                // maxLength={80}
-                style={{
-                  fontSize: 24,
-                  fontWeight: 500,
-                  border: 'none',
-                  outline: 'none',
-                  color: '#1d2129',
-                  height: '100%',
-                  minWidth:580
-                  // paddingRight: 14
-                }}
-              >
-              </input>
-            </Col>
-            <Col span={1} style={{
-              display: 'flex',
-              textAlign: 'center',
-              verticalAlign: 'middle',
-              alignItems: 'center',
-              height: '100%',
-              // background: 'aqua',
-              justifyContent: 'center'
-
-            }}>
-              <Button type='primary' onClick={this.toDraft}>草稿箱</Button>
-            </Col>
-            <Col span={1}
-              style={{
-                display: 'flex',
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                alignItems: 'center',
-                height: '100%',
-                // background: 'aqua',
-                justifyContent: 'center'
-              }}
-            >
-              <Button type='primary' onClick={this.handlePublishArticle}>发布</Button>
-            </Col>
-            {/* <Col span={1}></Col> */}
-            {/* <Col span={2}
-              style={{
-                display: 'flex',
-                textAlign: 'center',
-                verticalAlign: 'middle',
-                alignItems: 'center',
-                height: '100%',
-                // background: 'aqua',
-                justifyContent: 'center'
-              }}
-            >
-              <Dropdown
-                overlay={this.menu}
-                trigger={["click"]}
-                placement="bottomRight"
-              >
-                <Avatar size="large" icon="user" />
-              </Dropdown>
-            </Col> */}
-
-          </Row>
-
-        </div>
-
+        
+        {/* <section style="height: 500px"> */}
         <section style={{ height: "500px" }}>
           <MdEditor
             ref={node => this.mdEditor = node}
