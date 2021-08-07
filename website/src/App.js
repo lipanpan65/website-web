@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
 
-// import Home from './pages/Home'
-import Editor from './pages/Editor/indexv2';
+import {Switch,Route,HashRouter}  from 'react-router-dom'
+// Router
+import Home from './pages/Home'
+import Editor from './pages/Editor';
 
 import './App.css';
-
 
 class App extends Component {
   constructor(props) {
@@ -14,11 +15,12 @@ class App extends Component {
   }
   render() { 
     return ( 
-      <div>
-        {/* App */}
-        <Editor/>
-        {/* <Home/> */}
-      </div>
+      <HashRouter>
+        <Switch>
+          <Route exact component={Home}  path="/" />
+          <Route exact component={Editor}  path="/edit" />
+        </Switch>
+      </HashRouter>
      );
   }
 }
