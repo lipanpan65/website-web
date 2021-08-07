@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Layout, Menu, Row, Col, Card, Breadcrumb, List, Icon } from 'antd';
+import { Layout, Menu, Row, Col, Card, Breadcrumb, List, Icon, Button } from 'antd';
 import { reqPosts } from '../../api'
 import "./style.css"
 
@@ -47,13 +47,10 @@ class Home extends Component {
         const resp = await reqPosts();
         console.log(resp)
         // this.setState({ posts: resp });
-      };
-
+    };
 
     componentWillMount() {
-
         this.getArticleList()
-
     }
 
 
@@ -62,7 +59,8 @@ class Home extends Component {
             <div>
                 <Layout className="layout">
                     <Header className="home-header">
-                        <Row type="flex" justify="center" align="middle" style={{ padding: '0 50px' }}>
+                        {/* <Row type="flex" justify="center" align="middle" style={{ padding: '0 50px' }}> */}
+                        <Row type="flex" justify="center" align="middle" >
                             <Col span={16}>
                                 <div className="logo" />
                                 <Menu
@@ -76,9 +74,15 @@ class Home extends Component {
                                     {/* <Menu.Item key="3">nav 3</Menu.Item> */}
                                 </Menu>
                             </Col>
+                            <Col span={2}>
+                                <Button type="primary">
+                                    写文章
+                                </Button>
+                            </Col>
                         </Row>
                     </Header>
-                    <Content style={{ padding: '0 50px' }}>
+                    {/* <Content style={{ padding: '0 50px' }}> */}
+                    <Content >
                         {/* <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>

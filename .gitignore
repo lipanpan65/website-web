@@ -1,7 +1,6 @@
 # 
-
 setupProxy.js
-
+*.code-workspace
 # Logs
 logs
 *.log

@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 
-import Home from './pages/Home'
-
+// import Home from './pages/Home'
+import Editor from './pages/Editor';
 
 import './App.css';
 
@@ -16,12 +16,13 @@ class App extends Component {
     return ( 
       <div>
         {/* App */}
-        <Home/>
+        <Editor/>
+        {/* <Home/> */}
       </div>
      );
   }
 }
- 
+
 export default App;
 
 
