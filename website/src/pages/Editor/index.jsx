@@ -1,6 +1,14 @@
 // 'use strict';
 import React from 'react'
-import { Row, Col, Menu, Dropdown, Icon, Popover, Avatar, Button } from "antd";
+import {
+  Row, Col,
+  // Menu,
+  // Dropdown,
+  // Icon,
+  // Popover,
+  // Avatar,
+  Button
+} from "antd";
 // import ReactDOM from 'react-dom'
 import MdEditor from 'react-markdown-editor-lite'
 import MarkdownIt from 'markdown-it'
@@ -19,13 +27,19 @@ import 'highlight.js/styles/atom-one-light.css'
 // import './index.less';
 import 'react-markdown-editor-lite/lib/index.css';
 
+
+import { createPosts, updatePosts } from '../../api'
+
+
 export default class Editor extends React.Component {
   mdEditor = null
   mdParser = null
   constructor(props) {
     super(props)
     this.state = {
-      text: ""
+      title: "",
+      text: "",
+      id: null,
     }
 
     // initial a parser
@@ -55,25 +69,74 @@ export default class Editor extends React.Component {
 
   }
 
-  handleEditorChange = (data, event) => {
-    const { text, html } = data
-    this.setState({ text })
+  // componentWillMount () {
+  //   // this.createPost()
+  //   // this.updatePost()
+  // }
+
+
+
+  createPost = async () => {
+    const isUpdate = !!this.state.id
+    let { title, text, id } = this.state
+    if (title === "") {
+      title = "无标题"
+    }
+    // debugger
+    if (text && !isUpdate && !id) {
+      const post = await createPosts(title, text)
+      const { id } = post
+      this.setState({ id })
+      console.log(post)
+      // setTimeout(() => {
+      //   const { id } = post
+      //   this.setState({ id })
+      // })
+    }
   }
 
-  handleImageUpload(file, callback) {
+
+
+  updatePost = () => {
+
+    console.log('执行了')
+    const isUpdate = !!this.state.id
+    let { id: pk, title, text } = this.state
+    if (title === "") {
+      title = "无标题"
+    }
+    if (isUpdate) {
+      updatePosts(pk, title, text)
+    }
+  }
+
+
+
+
+
+  handleEditorChange = (data, event) => {
+    // const { text, html } = data
+    console.log("state", this.state)
+    const { text } = data
+    this.setState({ text })
+
+  }
+
+  handleImageUpload (file, callback) {
     const reader = new FileReader()
     reader.onload = () => {
-      const convertBase64UrlToBlob = (urlData) => {
-        let arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1]
-        let bstr = atob(arr[1])
-        let n = bstr.length
-        let u8arr = new Uint8Array(n)
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n)
-        }
-        return new Blob([u8arr], { type: mime })
-      }
-      const blob = convertBase64UrlToBlob(reader.result)
+      // const convertBase64UrlToBlob = (urlData) => {
+      //   let arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1]
+      //   let bstr = atob(arr[1])
+      //   let n = bstr.length
+      //   let u8arr = new Uint8Array(n)
+      //   while (n--) {
+      //     u8arr[n] = bstr.charCodeAt(n)
+      //   }
+      //   return new Blob([u8arr], { type: mime })
+      // }
+      // TODO 不能删除
+      // const blob = convertBase64UrlToBlob(reader.result)
       setTimeout(() => {
         // setTimeout 模拟异步上传图片
         // 当异步上传获取图片地址后，执行calback回调（参数为imageUrl字符串），即可将图片地址写入markdown
@@ -82,9 +145,12 @@ export default class Editor extends React.Component {
     }
     reader.readAsDataURL(file)
   }
-
-  renderHTML(text) {
+  // async
+  renderHTML (text) {
     // 模拟异步渲染Markdown
+
+    this.createPost()
+    this.updatePost()
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(this.mdParser.render(text))
@@ -104,13 +170,9 @@ export default class Editor extends React.Component {
   handleGetHtmlValue = () => {
     this.mdEditor && alert(this.mdEditor.getHtmlValue())
   }
-  render() {
+  render () {
     return (
       <div>
-        {/* <nav>
-          <button onClick={this.handleGetMdValue} >getMdValue</button>
-          <button onClick={this.handleGetHtmlValue} >getHtmlValue</button>
-        </nav> */}
 
         <div>
           <Row
@@ -130,13 +192,15 @@ export default class Editor extends React.Component {
                   outline: 'none',
                   color: '#1d2129',
                   height: '100%',
-                  minWidth:580
+                  minWidth: 580
                   // paddingRight: 14
                 }}
+                value={this.state.value}
+                onClick={(e) => this.setState({ title: e.target.value })}
               >
               </input>
             </Col>
-            <Col span={1} style={{
+            <Col span={2} style={{
               display: 'flex',
               textAlign: 'center',
               verticalAlign: 'middle',
@@ -148,7 +212,7 @@ export default class Editor extends React.Component {
             }}>
               <Button type='primary' onClick={this.toDraft}>草稿箱</Button>
             </Col>
-            <Col span={1}
+            <Col span={2}
               style={{
                 display: 'flex',
                 textAlign: 'center',

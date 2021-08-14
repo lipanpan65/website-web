@@ -20,7 +20,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact component={Home}  path="/" />
-          <Route exact component={Editor}  path="/edit" />
+          <Route exact component={Editor}  path="/editor/drafts/new" />
         </Switch>
       </HashRouter>
      );

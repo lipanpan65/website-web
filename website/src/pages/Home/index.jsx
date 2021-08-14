@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Layout, Menu, Row, Col, Card, Breadcrumb, List, Icon, Button } from 'antd';
-import { reqPosts } from '../../api'
+import { getPosts } from '../../api'
 import "./style.css"
 
 // Breadcrumb
@@ -11,20 +11,20 @@ const { Header, Content } = Layout;
 
 // Footer
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
+// const data = [
+//   {
+//     title: 'Ant Design Title 1',
+//   },
+//   {
+//     title: 'Ant Design Title 2',
+//   },
+//   {
+//     title: 'Ant Design Title 3',
+//   },
+//   {
+//     title: 'Ant Design Title 4',
+//   },
+// ];
 
 
 const IconText = ({ type, text }) => (
@@ -42,29 +42,31 @@ class Home extends Component {
     }
   }
 
-  getArticleList = async () => {
+  getPostsList = () => {
     // 调用接口请求异步获取数据
-    const resp = await reqPosts();
-    console.log(resp)
-    // this.setState({ posts: resp });
+    getPosts()
+      .then((data) => this.setState({ posts: data }))
   };
 
-  componentWillMount() {
-    this.getArticleList()
+  componentWillMount () {
+    this.getPostsList()
   }
 
-  toEdit = () => {
-
+  toEditor = () => {
+    this.props.history.push({
+      pathname: "/editor/drafts/new"
+    })
   }
 
-  render() {
+  render () {
+    
     return (
       <div>
         <Layout className="layout">
           <Header className="home-header">
             {/* <Row type="flex" justify="center" align="middle" style={{ padding: '0 50px' }}> */}
             <Row type="flex" justify="center" align="middle" >
-              <Col span={16}>
+              <Col span={12}>
                 <div className="logo" />
                 <Menu
                   theme="dark"
@@ -78,7 +80,7 @@ class Home extends Component {
                 </Menu>
               </Col>
               <Col span={2}>
-                <Button type="primary">
+                <Button type="primary" onClick={this.toEditor}>
                   写文章
                 </Button>
               </Col>
@@ -116,7 +118,7 @@ class Home extends Component {
                   <List
                     // itemLayout="horizontal"
                     itemLayout="vertical"
-                    dataSource={data}
+                    dataSource={this.state.posts}
                     renderItem={item => (
                       <List.Item
                         key={item.title}
@@ -146,15 +148,14 @@ class Home extends Component {
                                     test
                                 </div> */}
               </Col>
-              <Col span={4}>
-                {/* <div style={{ background: 'red', padding: 24, }}></div> */}
-                <Card
-                  size="default"
-                  style={{ minHeight: 200, marginRight: 16 }}
-                >
-                </Card>
 
+                {/* <div style={{ background: 'red', padding: 24, }}></div> */}
+              
+              {/* <Col span={4}>
+                <Card size="default" style={{ minHeight: 200, marginRight: 16 }}>
+                </Card>
               </Col>
+               */}
             </Row>
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
