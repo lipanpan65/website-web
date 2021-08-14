@@ -1,38 +1,35 @@
 
 import React, { Component } from 'react';
-import { Layout, Menu, Row, Col, Card, Breadcrumb, List, Icon, Button } from 'antd';
+import { 
+  Layout, 
+  Menu, 
+  Row, 
+  Col, 
+  Card, 
+  Breadcrumb, 
+  List, 
+  // Icon, 
+  Button
+ } from 'antd';
 import { getPosts } from '../../api'
 import "./style.css"
+import { Link } from 'react-router-dom';
+// import {Switch,Route,HashRouter}  from 'react-router-dom'
 
 // Breadcrumb
 // Avatar
 
 const { Header, Content } = Layout;
-
 // Footer
 
-// const data = [
-//   {
-//     title: 'Ant Design Title 1',
-//   },
-//   {
-//     title: 'Ant Design Title 2',
-//   },
-//   {
-//     title: 'Ant Design Title 3',
-//   },
-//   {
-//     title: 'Ant Design Title 4',
-//   },
-// ];
 
 
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
+// const IconText = ({ type, text }) => (
+//   <span>
+//     <Icon type={type} style={{ marginRight: 8 }} />
+//     {text}
+//   </span>
+// );
 
 class Home extends Component {
   constructor(props) {
@@ -88,6 +85,7 @@ class Home extends Component {
           </Header>
           {/* <Content style={{ padding: '0 50px' }}> */}
           <Content >
+
             {/* <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -122,16 +120,22 @@ class Home extends Component {
                     renderItem={item => (
                       <List.Item
                         key={item.title}
-                        actions={[
-                          <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-                          <IconText type="like-o" text="156" key="list-vertical-like-o" />,
-                          <IconText type="message" text="2" key="list-vertical-message" />,
-                        ]}
+                        // actions={[
+                        //   <IconText type="star-o" text="156" key="list-vertical-star-o" />,
+                        //   <IconText type="like-o" text="156" key="list-vertical-like-o" />,
+                        //   <IconText type="message" text="2" key="list-vertical-message" />,
+                        // ]}
                       >
                         <List.Item.Meta
                           // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                          title={<a href="https://ant.design">{item.title}</a>}
-                          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                          // title={<a href="https://ant.design">{item.title}</a>}
+                          title={
+                            <Link to={`/post/${item.id}/`}>
+                            {/* <h3>{item.title}</h3> */}
+                            {item.title}
+                          </Link>
+                          }
+                          // description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                         />
                       </List.Item>
                     )}
@@ -157,6 +161,7 @@ class Home extends Component {
               </Col>
                */}
             </Row>
+            
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
         </Layout>

@@ -30,6 +30,8 @@ import 'react-markdown-editor-lite/lib/index.css';
 
 import { createPosts, updatePosts } from '../../api'
 
+import { Link } from 'react-router-dom';
+
 
 export default class Editor extends React.Component {
   mdEditor = null
@@ -102,6 +104,7 @@ export default class Editor extends React.Component {
     console.log('执行了')
     const isUpdate = !!this.state.id
     let { id: pk, title, text } = this.state
+    debugger
     if (title === "") {
       title = "无标题"
     }
@@ -111,15 +114,11 @@ export default class Editor extends React.Component {
   }
 
 
-
-
-
   handleEditorChange = (data, event) => {
     // const { text, html } = data
     console.log("state", this.state)
     const { text } = data
     this.setState({ text })
-
   }
 
   handleImageUpload (file, callback) {
@@ -158,10 +157,6 @@ export default class Editor extends React.Component {
     })
   }
 
-  toDraft = () => {
-    // 去草稿箱页面
-    console.log("to traft")
-  }
 
   handleGetMdValue = () => {
     this.mdEditor && alert(this.mdEditor.getMdValue())
@@ -195,8 +190,8 @@ export default class Editor extends React.Component {
                   minWidth: 580
                   // paddingRight: 14
                 }}
-                value={this.state.value}
-                onClick={(e) => this.setState({ title: e.target.value })}
+                defaultValue={this.state.title}
+                onChange={(e) => this.setState({ title: e.target.value })}
               >
               </input>
             </Col>
@@ -210,7 +205,9 @@ export default class Editor extends React.Component {
               justifyContent: 'center'
 
             }}>
-              <Button type='primary' onClick={this.toDraft}>草稿箱</Button>
+              <Button type='primary'>
+              <Link to={{ pathname: '/editor/drafts/', state: { day: 'Friday' } }}>草稿箱</Link>
+              </Button>
             </Col>
             <Col span={2}
               style={{
