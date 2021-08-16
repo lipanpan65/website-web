@@ -12,6 +12,6 @@ export const updatePosts = (pk, title, text) => ajax(`/api/posts/${pk}/`, { titl
 
 export const getDraftList = () => ajax("/api/posts/draft");
 
-export const deletePost = (id) => ajax(`/api/posts/${id}/`, 'DELETE');
+export const reqArticleDraftDelete = (id) => ajax(`/api/posts/${id}/`, {}, "DELETE");
 
 

@@ -10,14 +10,19 @@ import {
   List,
   Icon,
   Button,
-  Dropdown
+  Dropdown,
+  Modal
 } from 'antd';
 import { dateFormate } from "../../utils";
-import { getDraftList, deletePost } from '../../api'
+import { getDraftList, reqArticleDraftDelete } from '../../api'
 // import "./style.css"
 import { Link } from 'react-router-dom';
 
 const { Header, Content } = Layout;
+const { confirm } = Modal;
+
+
+
 
 
 // const data = [
@@ -49,20 +54,25 @@ class DescriptionNode extends React.Component {
   };
 
   // handleDeleteItem = (id) => {
-  //   reqArticleDraftDelete(id).then((res) => console.log(res));
-  //   this.props.getArticleDraftList();
+
+
+
+  //   // reqArticleDraftDelete(id).then((res) => console.log(res));
+  //   // this.props.getArticleDraftList();
   // };
 
   handleMenuClick = (e) => {
     // console.log("click", e);
     const { key } = e;
     const { id } = this.props;
+    console.log(this.props)
     if (key === "delete") {
-      this.handleDeleteItem(id);
+      this.props.showDeleteConfirm(id)
     } else {
-      this.handleEditItem(id);
+      // this.handleEditItem(id);
     }
   };
+
 
 
 
@@ -114,11 +124,30 @@ class Draft extends Component {
     this.state = { data: [] };
   }
 
+  showDeleteConfirm = (id) => {
+    confirm({
+      title: '确定要删除草稿吗？',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      onOk: () => {
+        reqArticleDraftDelete(id)
+          .then((data) => {
+            const { success } = data
+            if (success) {
+              this.getArticleDraftList()
+            }
+          })
+      },
+    });
+  }
+
 
   getArticleDraftList = () => {
     getDraftList()
       .then((data) => this.setState({ data }))
   };
+
 
 
 
@@ -160,11 +189,8 @@ class Draft extends Component {
                       <List.Item key={item.title}>
                         <List.Item.Meta
                           title={<Link to={`/draft/${item.id}/`}>{item.title}</Link>}
-                          description={
-                            <DescriptionNode
-                              {...item}
-                              getArticleDraftList={this.getArticleDraftList}
-                            />
+
+                          description={<DescriptionNode {...item} showDeleteConfirm={this.showDeleteConfirm} />
                           }
                         />
                       </List.Item>

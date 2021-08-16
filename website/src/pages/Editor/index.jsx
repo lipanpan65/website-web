@@ -84,16 +84,12 @@ export default class Editor extends React.Component {
     if (title === "") {
       title = "无标题"
     }
-    // debugger
+
     if (text && !isUpdate && !id) {
       const post = await createPosts(title, text)
       const { id } = post
       this.setState({ id })
       console.log(post)
-      // setTimeout(() => {
-      //   const { id } = post
-      //   this.setState({ id })
-      // })
     }
   }
 
@@ -187,8 +183,8 @@ export default class Editor extends React.Component {
                   outline: 'none',
                   color: '#1d2129',
                   height: '100%',
-                  minWidth: 580
-                  // paddingRight: 14
+                  minWidth: 580,
+                  paddingLeft: 15
                 }}
                 defaultValue={this.state.title}
                 onChange={(e) => this.setState({ title: e.target.value })}
