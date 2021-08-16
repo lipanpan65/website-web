@@ -23,6 +23,7 @@ class App extends Component {
           <Route exact component={Home}  path="/" />
           <Route exact component={Draft}  path="/editor/drafts/" />
           <Route exact component={Article}  path="/post/:id"  />
+          <Route exact component={Editor}  path="/draft/:id"  />
           <Route exact component={Editor}  path="/editor/drafts/new" />
         </Switch>
       </HashRouter>

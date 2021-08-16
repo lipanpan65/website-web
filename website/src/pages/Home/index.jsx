@@ -63,7 +63,7 @@ class Home extends Component {
           <Header className="home-header">
             {/* <Row type="flex" justify="center" align="middle" style={{ padding: '0 50px' }}> */}
             <Row type="flex" justify="center" align="middle" >
-              <Col span={12}>
+              <Col span={10}>
                 <div className="logo" />
                 <Menu
                   theme="dark"
@@ -94,7 +94,7 @@ class Home extends Component {
             {/* <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
 
                         </div> */}
-            <Row type="flex" justify="center" style={{}}>
+            <Row type="flex" justify="center" style={{marginTop:16}}>
               {/* align="middle" */}
               <Col span={12}>
                 <Card size="default" title={
