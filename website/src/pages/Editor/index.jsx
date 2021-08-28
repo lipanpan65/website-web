@@ -71,10 +71,12 @@ export default class Editor extends React.Component {
 
   }
 
-  // componentWillMount () {
-  //   // this.createPost()
-  //   // this.updatePost()
-  // }
+  componentWillMount () {
+    debugger
+    console.log("this.props",this.props)
+    // this.createPost()
+    // this.updatePost()
+  }
 
 
 
@@ -202,7 +204,7 @@ export default class Editor extends React.Component {
 
             }}>
               <Button type='primary'>
-              <Link to={{ pathname: '/editor/drafts/', state: { day: 'Friday' } }}>草稿箱</Link>
+                <Link to={{ pathname: '/editor/drafts/', state: { day: 'Friday' } }}>草稿箱</Link>
               </Button>
             </Col>
             <Col span={2}

@@ -50,7 +50,12 @@ class DescriptionNode extends React.Component {
 
   // 编辑按钮
   handleEditItem = (id) => {
-    // 路由跳转
+    console.log("编辑按钮", id)
+    this.props.history.replace({
+      pathname: `/editor/drafts/${id}`,
+      query: { 1: "x" },
+      state: { xxx: "xxx" }
+    })
   };
 
   // handleDeleteItem = (id) => {
@@ -62,14 +67,13 @@ class DescriptionNode extends React.Component {
   // };
 
   handleMenuClick = (e) => {
-    // console.log("click", e);
     const { key } = e;
-    const { id } = this.props;
-    console.log(this.props)
+    const { id } = this.props.item
+    // console.log(this.props)
     if (key === "delete") {
       this.props.showDeleteConfirm(id)
     } else {
-      // this.handleEditItem(id);
+      this.handleEditItem(id);
     }
   };
 
@@ -77,13 +81,14 @@ class DescriptionNode extends React.Component {
 
 
   render () {
-    const { id, create_time } = this.props;
+    const { id, create_time } = this.props.item
     const menu = (
       <Menu onClick={this.handleMenuClick}>
+        {/* <Menu > */}
         <Menu.Item key="edit">
           <Link
             to={{
-              pathname: "/editor",
+              pathname: `/editor/drafts/${id}`,
               // search: `?id=${id}`,
               query: { id: id },
               // hash: "#the-hash",
@@ -158,6 +163,8 @@ class Draft extends Component {
 
 
   render () {
+    console.log("draft")
+    console.log(this.props)
     const { data = [] } = this.state;
     console.log(this.state)
     return (
@@ -188,9 +195,13 @@ class Draft extends Component {
                     renderItem={item => (
                       <List.Item key={item.title}>
                         <List.Item.Meta
-                          title={<Link to={`/draft/${item.id}/`}>{item.title}</Link>}
-
-                          description={<DescriptionNode {...item} showDeleteConfirm={this.showDeleteConfirm} />
+                          title={<Link
+                            to={`/editor/drafts/${item.id}/`}
+                            replace>{item.title}</Link>}
+                          description={<DescriptionNode
+                            {...this.props}
+                            item={item}
+                            showDeleteConfirm={this.showDeleteConfirm} />
                           }
                         />
                       </List.Item>

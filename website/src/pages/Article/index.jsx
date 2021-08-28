@@ -53,6 +53,7 @@ class Article extends Component {
     // console.log(id)
     getPost(id)
       .then(data => {
+        console.log(data)
         const { title, article_detail: { content } } = data
         this.setState({ title, content })
       })
@@ -81,16 +82,12 @@ class Article extends Component {
           </Header>
           {/* <Content style={{ padding: '0 50px' }}> */}
           <Content >
-
-            <Row type="flex" justify="center" style={{marginTop:16}}>
+            <Row type="flex" justify="center" style={{ marginTop: 16 }}>
               {/* <Row style={{}}> */}
               {/* <div className="site-card-border-less-wrapper markdown-body"> */}
-              <Col span={8}>
+              <Col span={12}>
                 <Card size="default"
-
-                  // title={
-                  //   <h1>{this.state.title}</h1>
-                  // }
+                  title={this.state.title}
                   style={{ minHeight: 280, marginRight: 16 }}
                   bodyStyle={{ padding: '0 24px' }}
                   bordered={false}
@@ -98,15 +95,14 @@ class Article extends Component {
                   <div className="markdown-body">
                     <ReactMarkdown children={this.state.content} />
                   </div>
-
                 </Card>
               </Col>
 
               {/* <div style={{ background: 'red', padding: 24, }}></div> */}
-              <Col span={4}>
+              {/* <Col span={4}>
                 <Card size="default" style={{ minHeight: 200, marginRight: 16 }}>
                 </Card>
-              </Col>
+              </Col> */}
 
             </Row>
 
