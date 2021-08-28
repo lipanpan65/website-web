@@ -1,16 +1,16 @@
 
 import React, { Component } from 'react';
-import { 
-  Layout, 
-  Menu, 
-  Row, 
-  Col, 
-  Card, 
-  Breadcrumb, 
-  List, 
+import {
+  Layout,
+  Menu,
+  Row,
+  Col,
+  Card,
+  Breadcrumb,
+  List,
   // Icon, 
   Button
- } from 'antd';
+} from 'antd';
 import { getPosts } from '../../api'
 import "./style.css"
 import { Link } from 'react-router-dom';
@@ -56,7 +56,7 @@ class Home extends Component {
   }
 
   render () {
-    
+
     return (
       <div>
         <Layout className="layout">
@@ -94,7 +94,7 @@ class Home extends Component {
             {/* <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
 
                         </div> */}
-            <Row type="flex" justify="center" style={{marginTop:16}}>
+            <Row type="flex" justify="center" style={{ marginTop: 16 }}>
               {/* align="middle" */}
               <Col span={12}>
                 <Card size="default" title={
@@ -120,22 +120,22 @@ class Home extends Component {
                     renderItem={item => (
                       <List.Item
                         key={item.title}
-                        // actions={[
-                        //   <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-                        //   <IconText type="like-o" text="156" key="list-vertical-like-o" />,
-                        //   <IconText type="message" text="2" key="list-vertical-message" />,
-                        // ]}
+                      // actions={[
+                      //   <IconText type="star-o" text="156" key="list-vertical-star-o" />,
+                      //   <IconText type="like-o" text="156" key="list-vertical-like-o" />,
+                      //   <IconText type="message" text="2" key="list-vertical-message" />,
+                      // ]}
                       >
                         <List.Item.Meta
                           // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                           // title={<a href="https://ant.design">{item.title}</a>}
                           title={
                             <Link to={`/post/${item.id}/`}>
-                            {/* <h3>{item.title}</h3> */}
-                            {item.title}
-                          </Link>
+                              {/* <h3>{item.title}</h3> */}
+                              {item.title}
+                            </Link>
                           }
-                          // description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                        // description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                         />
                       </List.Item>
                     )}
@@ -153,15 +153,15 @@ class Home extends Component {
                                 </div> */}
               </Col>
 
-                {/* <div style={{ background: 'red', padding: 24, }}></div> */}
-              
+              {/* <div style={{ background: 'red', padding: 24, }}></div> */}
+
               {/* <Col span={4}>
                 <Card size="default" style={{ minHeight: 200, marginRight: 16 }}>
                 </Card>
               </Col>
                */}
             </Row>
-            
+
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
         </Layout>
