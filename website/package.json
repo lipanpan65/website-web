@@ -29,6 +29,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "moment": "^2.29.1",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.2",
@@ -38,6 +39,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "sass-loader": "^12.1.0",
     "stylus-loader": "3.0.2",
     "web-vitals": "^1.0.1"
   },
@@ -45,7 +47,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject",
+    "eject": "react-scripts eject",
     "build:env": "dotenv -e .env.development react-app-rewired build",
     "build:pro": "dotenv -e .env.production react-app-rewired build",
     "build:test": "dotenv -e .env.test react-app-rewired build"
