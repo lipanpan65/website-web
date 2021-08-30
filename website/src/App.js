@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {Switch,Route,HashRouter}  from 'react-router-dom'
 // Router
 import Home from './pages/Home'
+import Admin from './pages/Admin'
 import Editor from './pages/Editor';
 import Draft from './pages/Draft'
 import Article from './pages/Article'
@@ -16,11 +17,16 @@ class App extends Component {
     super(props);
     this.state = {  }
   }
+
+
+
+
   render() { 
     return ( 
       <HashRouter>
         <Switch>
           <Route exact component={Home}  path="/" />
+          <Route exact component={Admin}  path="/admin" />
           <Route exact component={Draft}  path="/editor/drafts/" />
           <Route exact component={Article}  path="/post/:id"  />
           <Route exact component={Editor}  path="/editor/drafts/:id"  />
