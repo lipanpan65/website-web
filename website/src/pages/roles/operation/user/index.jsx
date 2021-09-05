@@ -8,9 +8,12 @@ class User extends Component {
   }
   render () {
     return (
-      <div>User</div>
+      <div>用户列表</div>
     );
   }
 }
 
 export default User;
+
+
+

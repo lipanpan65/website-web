@@ -25,7 +25,7 @@ class App extends Component {
       <HashRouter>
         <Switch>
           <Route exact component={Home}  path="/" />
-          <PrivateRouter exact component={Admin}  path="/admin" />
+          <PrivateRouter exact component={Admin}  path="/operation" />
           <Route exact component={Draft}  path="/editor/drafts/" />
           <Route exact component={Article}  path="/post/:id"  />
           <Route exact component={Editor}  path="/editor/drafts/:id"  />

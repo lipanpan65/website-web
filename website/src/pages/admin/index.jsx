@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import LeftNav from '../../components/LeftNav'
+import Container from '../../components/Container';
 import "./style.css"
 
 const { Header, Sider, Content } = Layout;
@@ -22,9 +23,7 @@ class Admin extends Component {
     });
   };
 
-
   render () {
-    console.log(this.state)
     return (
       <div>
         <Layout>
@@ -47,7 +46,7 @@ class Admin extends Component {
                 minHeight: 280,
               }}
             >
-              Content
+              <Container />
             </Content>
           </Layout>
         </Layout>

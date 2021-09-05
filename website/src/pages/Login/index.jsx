@@ -23,7 +23,7 @@ class Login extends Component {
         const { username, password } = values
         reqLogin(username, password)
           .then(data => {
-            const {message,code,token} = data
+            const { message, code, token } = data
             // 设置token
             setToken(token)
           })

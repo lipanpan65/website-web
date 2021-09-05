@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
-
-class User extends Component {
+class UserDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
   render () {
     return (
-      <div>User</div>
+      用户详情
     );
   }
 }
 
-export default User;
+export default UserDetail;

@@ -2,17 +2,19 @@ const router = [
   {
     title: "控制台",
     icon: 'home',
-    key: '/home'
+    key: '/operation/'
   }, {
     title: "用户管理",
     icon: 'laptop',
-    key: '/user/index',
+    key: '/operation/user/',
     childs: [
       {
-        key: '/user/index/', title: '用户列表', icon: '',
+        title: '用户列表',
+        key: '/operation/user/list/',
+        icon: '',
       }, {
-        key: '/home/general/icon',
         title: '添加用户',
+        key: '/home/general/icon',
         icon: '',
         childs: [
           {
