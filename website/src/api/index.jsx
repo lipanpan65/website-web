@@ -14,4 +14,4 @@ export const getDraftList = () => ajax("/api/posts/draft");
 
 export const reqArticleDraftDelete = (id) => ajax(`/api/posts/${id}/`, {}, "DELETE");
 
-
+export const reqLogin = (username, password) => ajax(`api/user/login/`, { username, password }, 'POST')

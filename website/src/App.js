@@ -9,6 +9,8 @@ import Editor from './pages/Editor';
 import Draft from './pages/Draft'
 import Article from './pages/Article'
 
+import PrivateRouter from './components/PrivateRouter';
+
 
 import './App.css';
 
@@ -18,15 +20,12 @@ class App extends Component {
     this.state = {  }
   }
 
-
-
-
   render() { 
     return ( 
       <HashRouter>
         <Switch>
           <Route exact component={Home}  path="/" />
-          <Route exact component={Admin}  path="/admin" />
+          <PrivateRouter exact component={Admin}  path="/admin" />
           <Route exact component={Draft}  path="/editor/drafts/" />
           <Route exact component={Article}  path="/post/:id"  />
           <Route exact component={Editor}  path="/editor/drafts/:id"  />

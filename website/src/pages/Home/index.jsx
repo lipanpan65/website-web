@@ -9,11 +9,14 @@ import {
   Breadcrumb,
   List,
   // Icon, 
-  Button
+  Button,
+  Modal
 } from 'antd';
 import { getPosts } from '../../api'
 import "./style.css"
 import { Link } from 'react-router-dom';
+import LoginForm from '../Login'
+
 // import {Switch,Route,HashRouter}  from 'react-router-dom'
 
 // Breadcrumb
@@ -21,7 +24,6 @@ import { Link } from 'react-router-dom';
 
 const { Header, Content } = Layout;
 // Footer
-
 
 
 // const IconText = ({ type, text }) => (
@@ -35,7 +37,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      visible: false
     }
   }
 
@@ -54,6 +57,31 @@ class Home extends Component {
       pathname: "/editor/drafts/new"
     })
   }
+
+  toLogin = () => {
+
+
+  }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   render () {
 
@@ -79,6 +107,11 @@ class Home extends Component {
               <Col span={2}>
                 <Button type="primary" onClick={this.toEditor}>
                   写文章
+                </Button>
+              </Col>
+              <Col>
+                <Button type="primary" onClick={this.showModal}>
+                  登录
                 </Button>
               </Col>
             </Row>
@@ -160,6 +193,15 @@ class Home extends Component {
                 </Card>
               </Col>
                */}
+              <Modal
+                title="登录"
+                visible={this.state.visible}
+                // onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                footer={null}
+              >
+                <LoginForm />
+              </Modal>
             </Row>
 
           </Content>
